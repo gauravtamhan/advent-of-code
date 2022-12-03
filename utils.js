@@ -3,11 +3,19 @@ import path from 'path'
 import readline from 'readline'
 
 /**
- * Reads in a file's input.
+ * Reads in a file's input
+ * @param {string} fileName relative path to the file
+ * @returns {string[]}
+ */
+export const readFile = (fileName = './input.txt') =>
+  fs.readFileSync(path.resolve(process.cwd(), fileName), 'utf8').split('\n')
+
+/**
+ * Reads in a file's input asynchronously.
  * @param {string} fileName relative path to the file
  * @returns {Promise<string[]>}
  */
-export const readFile = async (fileName = './input.txt') => {
+export const old_readFile = async (fileName = './input.txt') => {
   const lines = []
   const inStream = fs.createReadStream(path.resolve(process.cwd(), fileName))
   const rl = readline.createInterface({ input: inStream })
@@ -18,6 +26,8 @@ export const readFile = async (fileName = './input.txt') => {
 
   return lines
 }
+
+// Ex: old_readFile().then(lines => {})
 
 /**
  * Finds the smallest number in an array.

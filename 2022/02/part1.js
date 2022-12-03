@@ -47,19 +47,19 @@ const matrixInput = {
   Z: 2,
 }
 
-readFile().then((lines) => {
-  let total = 0
-  for (let line of lines) {
-    const [them, me] = line.split(' ')
+const lines = readFile()
 
-    const i = matrixInput[them]
-    const j = matrixInput[me]
+let total = 0
+for (let line of lines) {
+  const [them, me] = line.split(' ')
 
-    const matchScore = matrix[i][j]
-    const myScore = j + 1
+  const i = matrixInput[them]
+  const j = matrixInput[me]
 
-    const roundScore = matchScore + myScore
-    total += roundScore
-  }
-  console.log(total)
-})
+  const matchScore = matrix[i][j]
+  const myScore = j + 1
+
+  const roundScore = matchScore + myScore
+  total += roundScore
+}
+console.log(total)

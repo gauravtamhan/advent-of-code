@@ -17,22 +17,22 @@ let i = 0
 let groups = []
 let sharedChars = []
 
-readFile().then((lines) => {
-  for (let line of lines) {
-    groups.push(line)
-    i++
-    if (i % 3 === 0) {
-      const shared = intersect(...groups)
-      sharedChars.push(shared)
-      groups = []
-    }
+const lines = readFile()
+
+for (let line of lines) {
+  groups.push(line)
+  i++
+  if (i % 3 === 0) {
+    const shared = intersect(...groups)
+    sharedChars.push(shared)
+    groups = []
   }
+}
 
-  const sum = sharedChars.reduce((acc, curr) => {
-    const subtract = curr === curr.toLowerCase() ? 96 : 38
-    const priority = curr.charCodeAt(0) - subtract
-    return acc + priority
-  }, 0)
+const sum = sharedChars.reduce((acc, curr) => {
+  const subtract = curr === curr.toLowerCase() ? 96 : 38
+  const priority = curr.charCodeAt(0) - subtract
+  return acc + priority
+}, 0)
 
-  console.log(sum)
-})
+console.log(sum)
